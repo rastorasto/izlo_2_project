@@ -20,7 +20,7 @@
 ; Zde doplnte vase reseni
 
 ; Reseni:
-
+; xuhliar00
 ; x = A * B * 2
 (define-fun x () Int 
     (* (* A B) 2)
