@@ -19,6 +19,41 @@
 
 ; Zde doplnte vase reseni
 
+; Reseni:
+
+; x = A * B * 2
+(define-fun x () Int 
+    (* (* A B) 2)
+)
+; if x < E:  y = x + 5 * B else: y = x - C
+(define-fun y ((E Int)) Int 
+  (ite (< x E)
+    (+ x (* 5 B))
+    (- x C))
+) 
+; if y + 2 < D: z = x * A - y * B else: z = x * B + y * A
+(define-fun z ((D Int) (E Int)) Int 
+  (ite (< (+ (y E) 2) D) 
+    (- (* x A) (* (y E) B))
+    (+ (* x B) (* (y E) A)))
+)
+(assert
+  (not (or (<= D 0) (<= E 0)))
+)
+(assert
+  (< (z D E) (+ E D))
+)
+
+(assert
+        (not (exists ((D2 Int) (E2 Int))
+            (and 
+                  (not (or (<= D 0) (<= E 0)))
+                  (< (z D2 E2) (+ E2 D2))
+                  (> (+ D E) (+ D2 E2))
+            )
+        ))
+    
+)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; END OF SOLUTION ;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
