@@ -37,22 +37,22 @@
     (- (* x A) (* (y E) B))
     (+ (* x B) (* (y E) A)))
 )
-(assert
-  (not (or (<= D 0) (<= E 0)))
-)
-(assert
-  (< (z D E) (+ E D))
-)
+; D > 0
+(assert (> D 0))
+; E > 0.
+(assert (> E 0))
+
+; z < E+D
+(assert (< (z D E) (+ E D)))
 
 (assert
         (not (exists ((D2 Int) (E2 Int))
             (and 
-                  (not (or (<= D 0) (<= E 0)))
+                  (and (> D2 0) (> E2 0))
                   (< (z D2 E2) (+ E2 D2))
                   (> (+ D E) (+ D2 E2))
             )
-        ))
-    
+        ))    
 )
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;; END OF SOLUTION ;;;;;;;;;;;
